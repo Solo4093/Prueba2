@@ -363,3 +363,34 @@ footer {
 .precio-final {
     color: #ffffff;
 }
+
+.form-inline-admin {
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.filtros {
+    max-width: 1200px;
+    margin: 0 auto 25px;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 20px;
+    color: #ffffff;
+}
+
+.filtros label {
+    display: block;
+    margin-bottom: 4px;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
+.check-filtro {
+    margin-bottom: 10px !important;
+}
+
+.busqueda-activa {
+    text-align: center;
+    color: #b0b0b0;
+    margin-bottom: 12px;
+}

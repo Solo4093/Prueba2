@@ -51,3 +51,20 @@ export function autenticarUsuario(correo, password) {
   const usuario = obtenerUsuarioPorCorreo(correo);
   return usuario && usuario.password === password ? usuario : null;
 }
+
+export function actualizarUsuario(id, cambios) {
+  const lista = obtenerUsuarios();
+  let datos = cambios;
+  if (cambios.correo) {
+    const correo = normalizar(cambios.correo);
+    if (lista.some((u) => u.correo === correo && u.id !== id)) {
+      throw new Error("Ya existe una cuenta con ese correo");
+    }
+    datos = { ...cambios, correo };
+  }
+  guardar(lista.map((u) => (u.id === id ? { ...u, ...datos } : u)));
+}
+
+export function eliminarUsuario(id) {
+  guardar(obtenerUsuarios().filter((u) => u.id !== id));
+}
