@@ -1,0 +1,365 @@
+.top-header {
+    background-color: #1a0a0a;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 12px 20px;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-container, .user-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Navbar principal y Carrito */
+.main-nav {
+    background-color: #141414;
+    border-bottom: 1px solid #2a2a2a;
+    padding: 12px 20px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.btn-cart {
+    text-decoration: none;
+    background-color: #2a9d8f;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-cart span {
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Área de contenido y Banner Hero */
+#content {
+    background: linear-gradient(180deg, #1a0a0a 0%, #0d0d0d 100%);
+    padding: 30px 20px;
+    min-height: calc(100vh - 120px);
+}
+
+.hero-banner {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-banner h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.hero-banner p {
+    color: #b0b0b0;
+}
+
+/* Tarjetas (.caluga) */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.caluga {
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 280px;
+    background-color: #141414;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.caluga:hover {
+    transform: translateY(-4px);
+    border-color: #e63946;
+}
+
+.caluga h3 {
+    color: #e63946;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.img-box {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-obj {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.caluga .precio {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+/* Botones genéricos */
+.btn-red {
+    background-color: #e63946;
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-red:hover {
+    background-color: #ff4d5e;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #e63946;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary-sm {
+    background-color: #e63946;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #000000;
+    color: #888888;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+}
+.btn-detalle {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.logo-header {
+    height: 40px;
+    width: auto;
+}
+
+.categorias-lista {
+    margin-bottom: 30px;
+}
+
+.categoria-chip {
+    text-decoration: none;
+    color: #b0b0b0;
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-weight: 600;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.categoria-chip:hover,
+.categoria-chip.activa {
+    color: #ffffff;
+    border-color: #e63946;
+}
+
+.pagina-texto {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.pagina-texto p {
+    color: #b0b0b0;
+    line-height: 1.7;
+}
+
+.blog-card {
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    width: 340px;
+    background-color: #141414;
+    padding: 20px;
+    color: #ffffff;
+}
+
+.blog-card h3 {
+    color: #e63946;
+    font-size: 1.2rem;
+}
+
+.blog-card small {
+    color: #888888;
+}
+
+.blog-card p {
+    color: #b0b0b0;
+    margin: 12px 0;
+}
+
+.form-contacto {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.error-texto {
+    color: #e63946;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.exito-texto {
+    color: #2a9d8f;
+    text-align: center;
+    margin: 0;
+}
+.texto-auth {
+    color: #b0b0b0;
+    text-align: center;
+    margin: 0;
+}
+
+.texto-auth a {
+    color: #e63946;
+}
+
+.user-saludo {
+    color: #ffffff;
+    align-self: center;
+}
+
+.auth-card {
+    background-color: #141414;
+    border: 1px solid #2a2a2a;
+    color: #ffffff;
+}
+
+.etiqueta-auth {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
+.user-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .header-container,
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+}
+
+.badge-oferta {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 0.9rem;
+}
+
+.precio-original {
+    color: #888888;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: line-through;
+}
+
+.precio-final {
+    color: #ffffff;
+}
