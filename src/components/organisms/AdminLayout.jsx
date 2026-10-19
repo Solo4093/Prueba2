@@ -6,7 +6,6 @@ export default function AdminLayout({ children }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  // Solo entra quien haya iniciado sesión y sea administrador
   if (!user || user.rol !== 'admin') {
     return <Navigate to="/login" replace />;
   }
@@ -24,6 +23,8 @@ export default function AdminLayout({ children }) {
         <NavLink to="/admin/productos">Productos</NavLink>
         <NavLink to="/admin/categorias">Categorías</NavLink>
         <NavLink to="/admin/usuarios">Usuarios</NavLink>
+        <NavLink to="/admin/ordenes">Órdenes</NavLink>
+        <NavLink to="/admin/reportes">Reportes</NavLink>
         <Link to="/">Ver tienda</Link>
         <Button className="btn-outline" onClick={salir}>Cerrar sesión</Button>
       </aside>

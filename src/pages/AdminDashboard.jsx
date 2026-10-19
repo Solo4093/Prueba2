@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { obtenerConsolas } from '../data/consolas';
 import { obtenerUsuarios } from '../data/usuarios';
+import { obtenerPedidos } from '../data/pedidos';
 
 const STOCK_CRITICO = 5;
 
 export default function AdminDashboard() {
   const consolas = obtenerConsolas();
   const usuarios = obtenerUsuarios();
+  const pagados = obtenerPedidos().filter((p) => p.estado === 'pagado');
+  const ventas = pagados.reduce((suma, p) => suma + p.total, 0);
   const enOferta = consolas.filter((c) => c.oferta).length;
   const criticos = consolas.filter((c) => c.stock <= STOCK_CRITICO);
 
@@ -30,6 +33,14 @@ export default function AdminDashboard() {
         <div className="stat-card">
           <span>Usuarios</span>
           <strong>{usuarios.length}</strong>
+        </div>
+        <div className="stat-card">
+          <span>Compras pagadas</span>
+          <strong>{pagados.length}</strong>
+        </div>
+        <div className="stat-card">
+          <span>Ventas</span>
+          <strong>${ventas.toLocaleString('es-CL')}</strong>
         </div>
       </div>
 

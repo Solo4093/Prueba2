@@ -1,5 +1,5 @@
 const CLAVE = "usuarios";
-const usuariosIniciales = [
+export const usuariosIniciales = [
   {
     id: 1,
     rol: "admin",

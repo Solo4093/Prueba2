@@ -4,7 +4,8 @@ import { Row, Col } from 'react-bootstrap';
 import CardConsola from '../components/molecules/CardConsola';
 import Button from '../components/atoms/Button';
 import { Input } from '../components/atoms/Input';
-import { obtenerConsolas } from '../data/consolas';
+import { useCart } from '../components/organisms/CartContext';
+import { obtenerConsolas, precioFinal, descuentoDe } from '../data/consolas';
 import { obtenerCategorias } from '../data/categorias';
 
 export default function Productos({ busqueda = '', onLimpiarBusqueda }) {
@@ -15,18 +16,18 @@ export default function Productos({ busqueda = '', onLimpiarBusqueda }) {
   const [orden, setOrden] = useState('');
   const navigate = useNavigate();
   const categorias = obtenerCategorias();
+  const { agregar } = useCart();
 
-  // La lista filtrada NO es un estado: se calcula en cada render
   let resultado = consolas.filter(
     (c) =>
       c.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()) &&
       (categoria === '' || c.categoria === categoria) &&
-      (precioMax === '' || c.precio <= Number(precioMax)) &&
+      (precioMax === '' || precioFinal(c) <= Number(precioMax)) &&
       (!soloOfertas || c.oferta)
   );
 
-  if (orden === 'menor') resultado = [...resultado].sort((a, b) => a.precio - b.precio);
-  if (orden === 'mayor') resultado = [...resultado].sort((a, b) => b.precio - a.precio);
+  if (orden === 'menor') resultado = [...resultado].sort((a, b) => precioFinal(a) - precioFinal(b));
+  if (orden === 'mayor') resultado = [...resultado].sort((a, b) => precioFinal(b) - precioFinal(a));
 
   const limpiarFiltros = () => {
     setCategoria('');
@@ -112,8 +113,15 @@ export default function Productos({ busqueda = '', onLimpiarBusqueda }) {
                 key={item.id}
                 nombre={item.nombre}
                 imagen={item.imagen}
-                precio={item.precio}
+                precio={precioFinal(item)}
+                precioOriginal={item.precio}
+                descuento={descuentoDe(item)}
                 onVerDetalle={() => navigate(`/productos/${item.id}`)}
+                onAgregar={() => {
+                  if (!agregar(item.id)) {
+                    alert('Ya tienes todo el stock disponible en el carrito.');
+                  }
+                }}
               />
             ))}
           </div>

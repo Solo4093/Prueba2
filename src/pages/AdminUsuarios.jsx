@@ -45,6 +45,9 @@ export default function AdminUsuarios() {
                 <Link to={`/admin/usuarios/${u.id}/editar`} className="btn-outline admin-btn">
                   Editar
                 </Link>{' '}
+                <Link to={`/admin/usuarios/${u.id}/historial`} className="btn-outline admin-btn">
+                    Historial
+                </Link>{' '}
                 {u.id !== user.id && (
                   <button className="admin-btn-eliminar" onClick={() => handleEliminar(u)}>
                     Eliminar

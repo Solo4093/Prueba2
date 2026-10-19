@@ -1,16 +1,18 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import CardConsola from '../components/molecules/CardConsola';
-import { descuentoDe, obtenerConsolas, precioFinal } from '../data/consolas';
+import { useCart } from '../components/organisms/CartContext';
+import { obtenerConsolas, precioFinal, descuentoDe } from '../data/consolas';
 
 export default function Categorias() {
   const { categoria } = useParams();
   const navigate = useNavigate();
+  const { agregar } = useCart();
   const consolas = obtenerConsolas();
 
-  // Lista de categorías sin repetir: ["Sony", "Microsoft", "Nintendo"]
+  // Lista de categorías sin repetir
   const categorias = [...new Set(consolas.map((c) => c.categoria))];
 
-  // Si hay una categoría en la URL, filtramos. Si no, mostramos todas.
+  // Si hay una categoría en la URL se filtra; si no, se muestran todas
   const filtradas = categoria
     ? consolas.filter((c) => c.categoria === categoria)
     : consolas;
@@ -47,6 +49,11 @@ export default function Categorias() {
                 precioOriginal={item.precio}
                 descuento={descuentoDe(item)}
                 onVerDetalle={() => navigate(`/productos/${item.id}`)}
+                onAgregar={() => {
+                  if (!agregar(item.id)) {
+                    alert('Ya tienes todo el stock disponible en el carrito.');
+                  }
+                }}
               />
             ))}
           </div>

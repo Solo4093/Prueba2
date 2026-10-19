@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
-import { obtenerConsolas, eliminarConsola } from '../data/consolas';
+import {
+  obtenerConsolas,
+  eliminarConsola,
+  descuentoDe,
+  precioFinal,
+} from '../data/consolas';
+
+const STOCK_CRITICO = 5;
 
 export default function AdminProductos() {
   const [consolas, setConsolas] = useState(obtenerConsolas);
@@ -29,8 +36,9 @@ export default function AdminProductos() {
             <th>Nombre</th>
             <th>Categoría</th>
             <th>Precio</th>
-            <th>Stock</th>
             <th>Oferta</th>
+            <th>Precio final</th>
+            <th>Stock</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -41,8 +49,9 @@ export default function AdminProductos() {
               <td>{c.nombre}</td>
               <td>{c.categoria}</td>
               <td>${c.precio.toLocaleString('es-CL')}</td>
-              <td>{c.stock}</td>
-              <td>{c.oferta ? 'Sí' : 'No'}</td>
+              <td>{descuentoDe(c) > 0 ? `-${descuentoDe(c)}%` : 'No'}</td>
+              <td>${precioFinal(c).toLocaleString('es-CL')}</td>
+              <td className={c.stock <= STOCK_CRITICO ? 'stock-critico' : ''}>{c.stock}</td>
               <td>
                 <Link to={`/admin/productos/${c.id}/editar`} className="btn-outline admin-btn">
                   Editar

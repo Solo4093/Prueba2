@@ -1,9 +1,13 @@
 import { useState } from 'react';
-const categorias = obtenerCategorias();
 import { useParams, useNavigate } from 'react-router-dom';
 import { Input } from '../components/atoms/Input';
 import Button from '../components/atoms/Button';
-import { obtenerConsolas, crearConsola, actualizarConsola } from '../data/consolas';
+import {
+  obtenerConsolas,
+  crearConsola,
+  actualizarConsola,
+  DESCUENTO_OFERTA,
+} from '../data/consolas';
 import { obtenerCategorias } from '../data/categorias';
 
 const vacio = {
@@ -13,6 +17,7 @@ const vacio = {
   stock: '',
   imagen: '',
   oferta: false,
+  descuento: '',
 };
 
 export default function AdminProductoForm() {
@@ -20,7 +25,9 @@ export default function AdminProductoForm() {
   const navigate = useNavigate();
   const existente = id ? obtenerConsolas().find((c) => c.id === parseInt(id)) : null;
 
-  const [datos, setDatos] = useState(existente ?? vacio);
+  const [datos, setDatos] = useState(
+    existente ? { ...vacio, ...existente, descuento: existente.descuento ?? '' } : vacio
+  );
   const [errores, setErrores] = useState({});
   const categorias = obtenerCategorias();
 
@@ -41,6 +48,12 @@ export default function AdminProductoForm() {
     if (!Number.isInteger(Number(datos.stock)) || Number(datos.stock) < 0) {
       nuevos.stock = 'El stock debe ser un número entero de 0 o más';
     }
+    if (datos.descuento !== '') {
+      const d = Number(datos.descuento);
+      if (!Number.isInteger(d) || d < 1 || d > 90) {
+        nuevos.descuento = 'El descuento debe ser un entero entre 1 y 90';
+      }
+    }
     return nuevos;
   };
 
@@ -57,6 +70,7 @@ export default function AdminProductoForm() {
       stock: Number(datos.stock),
       imagen: datos.imagen.trim(),
       oferta: datos.oferta,
+      descuento: datos.descuento === '' ? undefined : Number(datos.descuento),
     };
 
     if (existente) {
@@ -105,6 +119,17 @@ export default function AdminProductoForm() {
           <input type="checkbox" name="oferta" checked={datos.oferta} onChange={handleChange} />
           {' '}Producto en oferta
         </label>
+
+        <label>Descuento (%)</label>
+        <Input
+          type="number"
+          name="descuento"
+          placeholder={`Vacío = ${DESCUENTO_OFERTA}% por defecto`}
+          value={datos.descuento}
+          onChange={handleChange}
+        />
+        <small>Solo se aplica si el producto está marcado como oferta.</small>
+        {errores.descuento && <p className="error-texto">{errores.descuento}</p>}
 
         <div>
           <Button type="submit" className="btn-red admin-btn">Guardar</Button>{' '}

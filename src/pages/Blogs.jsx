@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/atoms/Button';
-import blogs from '../data/blogs';
+import blogs from '../data/Blogs';
 
 export default function Blog() {
   const navigate = useNavigate();

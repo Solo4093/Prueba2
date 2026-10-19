@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardConsola from '../components/molecules/CardConsola';
-import { obtenerConsolas, crearConsola } from '../data/consolas';
-
-// Cantidad de consolas que se muestran en el inicio.
-const MAX_HOME = 3;
+import { useCart } from '../components/organisms/CartContext';
+import { obtenerConsolas, precioFinal, descuentoDe } from '../data/consolas';
 
 export default function Home() {
-  const [consolas, setConsolas] = useState(() => obtenerConsolas().slice(0, MAX_HOME));
+  const [consolas] = useState(obtenerConsolas);
+  const navigate = useNavigate();
+  const { agregar } = useCart();
 
   return (
     <section id="content">
@@ -30,7 +31,15 @@ export default function Home() {
               key={item.id}
               nombre={item.nombre}
               imagen={item.imagen}
-              precio={item.precio}
+              precio={precioFinal(item)}
+              precioOriginal={item.precio}
+              descuento={descuentoDe(item)}
+              onVerDetalle={() => navigate(`/productos/${item.id}`)}
+              onAgregar={() => {
+                if (!agregar(item.id)) {
+                  alert('Ya tienes todo el stock disponible en el carrito.');
+                }
+              }}
             />
           ))}
         </div>
