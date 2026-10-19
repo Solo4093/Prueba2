@@ -1,6 +1,10 @@
 import { Link, NavLink } from 'react-router-dom';
+import { useCart } from './CartContext';
 
 export function Navbar() {
+  const carrito = useCart();
+  const total = carrito ? carrito.total : 0;
+
   return (
     <nav className="main-nav">
       <div className="nav-container">
@@ -15,7 +19,7 @@ export function Navbar() {
         </ul>
 
         <Link to="/carrito" className="btn-cart">
-          🛒 Carrito <span>$0</span>
+          🛒 Carrito <span>${total.toLocaleString('es-CL')}</span>
         </Link>
       </div>
     </nav>

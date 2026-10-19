@@ -20,13 +20,14 @@ export default function Home() {
       </article>
 
       <article className="section-container">
-        <h2 className="section-title">Consolas disponibles</h2>
+        <h2 className="section-title">Consolas destacadas</h2>
         <p className="section-title">
           En Nexus Gaming puedes encontrar muchas consolas de videojuegos.
+          Mira el resto del catálogo en la sección Productos.
         </p>
 
         <div className="contenedor">
-          {consolas.map((item) => (
+          {consolas.slice(0, 3).map((item) => (
             <CardConsola
               key={item.id}
               nombre={item.nombre}
